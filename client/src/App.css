@@ -27,61 +27,55 @@ body {
   background: linear-gradient(90deg, #1f2937, #111827);
   color: white;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  overflow: hidden;
+  position: relative;
 }
 
-.logo {
-  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: #10b981;
+.hero-top {
+  display: contents; 
 }
 
-.links,
-.links2 {
+.nav-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  gap: clamp(0.8rem, 2vw, 1.5rem);
+  flex: 1;
+  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.links a,
-.links2 a {
-  color: white;
-  text-decoration: none;
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
-  transition: color 0.3s;
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
 }
 
-.links a:hover,
-.links2 a:hover {
-  color: #10b981;
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
-/* Buttons for links2 */
-.btn {
-  padding: 0.4rem 1rem;
-  border-radius: 6px;
-  border: 1px solid #10b981;
-  transition: all 0.3s;
-  display: inline-block;
+.hamburger.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
 }
 
-.btn:hover {
-  background-color: #10b981;
-  color: #111827;
-}
-
-.btn.primary {
-  background-color: #10b981;
-  color: #111827;
-  font-weight: 600;
-}
-
-.btn.primary:hover {
-  background-color: #34d399;
-}
-
+/* Mobile */
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
@@ -90,9 +84,32 @@ body {
     padding: 1rem;
   }
 
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
   .logo {
-    margin-bottom: 0.5rem;
-    text-align: center;
+    margin: 0;
+    text-align: left;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-wrapper {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+  }
+
+  .nav-wrapper.active {
+    display: flex;
   }
 
   .links,
@@ -100,7 +117,7 @@ body {
     flex-direction: column;
     gap: 0.8rem;
     width: 100%;
-    margin: 0.5rem 0;
+    margin: 0;
     align-items: stretch;
   }
 
@@ -115,6 +132,7 @@ body {
     text-align: center;
   }
 }
+
 
 /* Intro Section */
 .intro {
